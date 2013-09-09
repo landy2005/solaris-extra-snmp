@@ -1,5 +1,6 @@
 This is a small script to add additional useful variables for SNMP monitoring
-under Solaris. It's known to be compatible with Solaris 11 Express and Solaris 11.
+under Solaris. It's known to be compatible with Solaris 11 Express and Solaris 11 
+as well as OpenIndiana 151a8.
 When deployed, it provides the following additional information:
 
     NYMNETWORKS-MIB::zfsFilesystemName.1 = STRING: "ext"
@@ -57,12 +58,14 @@ To use, drop the scripts
     zfs-snmp
     ipmi-snmp
     nut-snmp
+    iostat-snmp
 
 in for example `/usr/local/bin`, add the following to `/etc/sma/snmp/snmpd.conf`:
 
     pass .1.3.6.1.4.1.25359.1 /usr/local/bin/zfs-snmp
     pass .1.3.6.1.4.1.25359.2 /usr/local/bin/ipmi-snmp # Optional, for IPMI
     pass .1.3.6.1.4.1.25359.3 /usr/local/bin/nut-snmp # Optional, for NUT/UPS
+    pass .1.3.6.1.4.1.25359.3 /usr/local/bin/iostat-snmp # Optional, for reading Iostat errors 
 
 Restart snmp agent via sma
     
@@ -70,6 +73,8 @@ Restart snmp agent via sma
     svcadm disable svc:/application/management/snmpdx:default
     svcadm enable svc:/application/management/sma:default
     svcadm enable svc:/application/management/snmpdx:default
+
+or and `svcadm restart net-snmp`. If you don't already use the net-snmp service you will need to set community etc at the top of the file and `svcadm enable net-snmp`.
 
 License
 -------

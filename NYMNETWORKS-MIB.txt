@@ -10,6 +10,7 @@ nymnetworks	OBJECT IDENTIFIER ::= {enterprises 25359}
 zfs	OBJECT IDENTIFIER ::= {nymnetworks 1}
 ipmi	OBJECT IDENTIFIER ::= {nymnetworks 2}
 ups	OBJECT IDENTIFIER ::= {nymnetworks 3}
+iostat	OBJECT IDENTIFIER ::= {nymnetworks 4}
 
 fs	OBJECT IDENTIFIER ::= {zfs 1}
 
@@ -280,6 +281,24 @@ upsStatus OBJECT-TYPE
 	DESCRIPTION
 	         "The current UPS status string."
 	::= {ups 10}
+
+errors      OBJECT IDENTIFIER ::= {iostat 1}
+
+iostatDeviceName OBJECT-TYPE
+        SYNTAX  DisplayString
+        ACCESS  read-only
+        STATUS  mandatory
+        DESCRIPTION
+                "The name of the disk device."
+        ::= {errors 1}
+
+iostatTotalErrors OBJECT-TYPE
+        SYNTAX  COUNTER
+        ACCESS  read-only
+        STATUS  mandatory
+        DESCRIPTION
+                 "The number of total errors for the device."
+        ::= {errors 2}
 
 END
 
