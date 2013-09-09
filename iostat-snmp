@@ -1,0 +1,30 @@
+#!/usr/bin/python
+
+BASE_OID = '.1.3.6.1.4.1.25359.4'
+
+import sys, commands, re, snmpresponse
+
+
+def iostat_errors():
+    sd = [ re.split('\s+', line) for line in commands.getoutput("iostat -e |grep sd").split("\n") ]
+    sd = [ ( row[0], row[4] ) for row in sd ]
+    return sd
+
+
+# nymnetworks     OBJECT IDENTIFIER ::= {enterprises 25359}
+# iostat             OBJECT IDENTIFIER ::= {nymnetworks 4}
+# errors              OBJECT IDENTIFIER ::= {iostat 1}
+
+result = [ ]
+
+i = 1
+for device, errors in iostat_errors():
+    result.append((BASE_OID + '.1.1.' + str(i), ('string', device)))
+    result.append((BASE_OID + '.1.2.' + str(i), ('counter', errors)))
+    i += 1
+
+operation = sys.argv[1]
+req_oid = sys.argv[2]
+
+snmpresponse.respond_to(operation, req_oid, result)
+
