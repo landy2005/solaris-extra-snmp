@@ -52,7 +52,9 @@ basic UPS stats:
     NYMNETWORKS-MIB::upsBatteryType.1 = STRING: "PbAc"
     NYMNETWORKS-MIB::upsStatus.1 = STRING: "OL"
     
-For iostat errors,
+For iostat errors, if you add the `iostat-error` script you will get total HW and SW errors on
+devices (equivalent of `iostat -e` output to predict failing drives):
+
     .1.3.6.1.4.1.25359.4.1.1.1 = STRING: "sd26"
     .1.3.6.1.4.1.25359.4.1.1.2 = STRING: "sd27"
     .1.3.6.1.4.1.25359.4.1.1.3 = STRING: "sd28"
