@@ -51,6 +51,52 @@ basic UPS stats:
     NYMNETWORKS-MIB::upsBatteryNominalVoltagedV.1 = Gauge32: 240
     NYMNETWORKS-MIB::upsBatteryType.1 = STRING: "PbAc"
     NYMNETWORKS-MIB::upsStatus.1 = STRING: "OL"
+    
+For iostat errors,
+    .1.3.6.1.4.1.25359.4.1.1.1 = STRING: "sd26"
+    .1.3.6.1.4.1.25359.4.1.1.2 = STRING: "sd27"
+    .1.3.6.1.4.1.25359.4.1.1.3 = STRING: "sd28"
+    .1.3.6.1.4.1.25359.4.1.1.4 = STRING: "sd29"
+    .1.3.6.1.4.1.25359.4.1.1.5 = STRING: "sd30"
+    .1.3.6.1.4.1.25359.4.1.1.6 = STRING: "sd31"
+    .1.3.6.1.4.1.25359.4.1.1.7 = STRING: "sd32"
+    .1.3.6.1.4.1.25359.4.1.1.8 = STRING: "sd33"
+    .1.3.6.1.4.1.25359.4.1.1.9 = STRING: "sd34"
+    .1.3.6.1.4.1.25359.4.1.1.10 = STRING: "sd35"
+    .1.3.6.1.4.1.25359.4.1.1.11 = STRING: "sd36"
+    .1.3.6.1.4.1.25359.4.1.1.12 = STRING: "sd37"
+    .1.3.6.1.4.1.25359.4.1.1.13 = STRING: "sd38"
+    .1.3.6.1.4.1.25359.4.1.1.14 = STRING: "sd39"
+    .1.3.6.1.4.1.25359.4.1.1.15 = STRING: "sd42"
+    .1.3.6.1.4.1.25359.4.1.1.16 = STRING: "sd43"
+    .1.3.6.1.4.1.25359.4.1.1.17 = STRING: "sd44"
+    .1.3.6.1.4.1.25359.4.1.1.18 = STRING: "sd45"
+    .1.3.6.1.4.1.25359.4.1.1.19 = STRING: "sd46"
+    .1.3.6.1.4.1.25359.4.1.1.20 = STRING: "sd47"
+    .1.3.6.1.4.1.25359.4.1.1.21 = STRING: "sd48"
+    .1.3.6.1.4.1.25359.4.1.1.22 = STRING: "sd49"
+    .1.3.6.1.4.1.25359.4.1.2.1 = Counter32: 0
+    .1.3.6.1.4.1.25359.4.1.2.2 = Counter32: 0
+    .1.3.6.1.4.1.25359.4.1.2.3 = Counter32: 0
+    .1.3.6.1.4.1.25359.4.1.2.4 = Counter32: 0
+    .1.3.6.1.4.1.25359.4.1.2.5 = Counter32: 0
+    .1.3.6.1.4.1.25359.4.1.2.6 = Counter32: 0
+    .1.3.6.1.4.1.25359.4.1.2.7 = Counter32: 0
+    .1.3.6.1.4.1.25359.4.1.2.8 = Counter32: 0
+    .1.3.6.1.4.1.25359.4.1.2.9 = Counter32: 0
+    .1.3.6.1.4.1.25359.4.1.2.10 = Counter32: 0
+    .1.3.6.1.4.1.25359.4.1.2.11 = Counter32: 0
+    .1.3.6.1.4.1.25359.4.1.2.12 = Counter32: 0
+    .1.3.6.1.4.1.25359.4.1.2.13 = Counter32: 0
+    .1.3.6.1.4.1.25359.4.1.2.14 = Counter32: 0
+    .1.3.6.1.4.1.25359.4.1.2.15 = Counter32: 0
+    .1.3.6.1.4.1.25359.4.1.2.16 = Counter32: 0
+    .1.3.6.1.4.1.25359.4.1.2.17 = Counter32: 0
+    .1.3.6.1.4.1.25359.4.1.2.18 = Counter32: 0
+    .1.3.6.1.4.1.25359.4.1.2.19 = Counter32: 0
+    .1.3.6.1.4.1.25359.4.1.2.20 = Counter32: 0
+    .1.3.6.1.4.1.25359.4.1.2.21 = Counter32: 0
+    .1.3.6.1.4.1.25359.4.1.2.22 = Counter32: 0
 
 To use, drop the scripts
 
@@ -65,7 +111,7 @@ in for example `/usr/local/bin`, add the following to `/etc/sma/snmp/snmpd.conf`
     pass .1.3.6.1.4.1.25359.1 /usr/local/bin/zfs-snmp
     pass .1.3.6.1.4.1.25359.2 /usr/local/bin/ipmi-snmp # Optional, for IPMI
     pass .1.3.6.1.4.1.25359.3 /usr/local/bin/nut-snmp # Optional, for NUT/UPS
-    pass .1.3.6.1.4.1.25359.3 /usr/local/bin/iostat-snmp # Optional, for reading Iostat errors 
+    pass .1.3.6.1.4.1.25359.4 /usr/local/bin/iostat-snmp # Optional, for reading Iostat errors 
 
 Restart snmp agent via sma
     
