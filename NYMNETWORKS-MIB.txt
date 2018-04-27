@@ -12,6 +12,68 @@ ipmi	OBJECT IDENTIFIER ::= {nymnetworks 2}
 ups	OBJECT IDENTIFIER ::= {nymnetworks 3}
 iostat	OBJECT IDENTIFIER ::= {nymnetworks 4}
 
+vols 	OBJECT IDENTIFIER ::= {zfs 5}
+
+zfsVolumeName OBJECT-TYPE
+        SYNTAX  DisplayString
+        ACCESS  read-only
+        STATUS  mandatory
+        DESCRIPTION
+                "The name of the filesystem type Volume."
+        ::= {vols 1}
+
+zfsVolumeAvailableKB OBJECT-TYPE
+        SYNTAX  GAUGE
+        ACCESS  read-only
+        STATUS  mandatory
+        DESCRIPTION
+                 "The number of 1 KB blocks that are available for use."
+        ::= {vols 2}
+
+zfsVolumeUsedKB OBJECT-TYPE
+        SYNTAX  GAUGE
+        ACCESS  read-only
+        STATUS  mandatory
+        DESCRIPTION
+                 "The number of 1 KB blocks that are in use."
+        ::= {vols 3}
+
+zfsVolumeSizeKB OBJECT-TYPE
+        SYNTAX  GAUGE
+        ACCESS  read-only
+        STATUS  mandatory
+        DESCRIPTION
+                 "The number of 1 KB blocks of the volume."
+        ::= {vols 4}
+
+zfsVolumeAvailableMB OBJECT-TYPE
+        SYNTAX  GAUGE
+        ACCESS  read-only
+        STATUS  mandatory
+        DESCRIPTION
+                 "The number of 1 MB blocks that are available for use.
+                 Useful if zfsVolumeAvailableKB exceeds a 32 bit
+                 integer."
+        ::= {vols 12}
+
+zfsVolumeUsedMB OBJECT-TYPE
+        SYNTAX  GAUGE
+        ACCESS  read-only
+        STATUS  mandatory
+        DESCRIPTION
+                 "The number of 1 MB blocks that are in use Useful if
+                 zfsVolumeUsedKB exceeds a 32 bit integer."
+        ::= {vols 13}
+
+zfsVolumeSizeMB OBJECT-TYPE
+        SYNTAX  GAUGE
+        ACCESS  read-only
+        STATUS  mandatory
+        DESCRIPTION
+                 "The number of 1 MB blocks part of the volume Useful if
+                 zfsVolumeSizeKB exceeds a 32 bit integer."
+        ::= {vols 14}
+
 fs	OBJECT IDENTIFIER ::= {zfs 1}
 
 zfsFilesystemName OBJECT-TYPE
@@ -47,6 +109,14 @@ zfsPoolHealth OBJECT-TYPE
 		 by zpool status."
 	::= {fs 4}
 
+zfsFilesystemSizeKB OBJECT-TYPE
+        SYNTAX  GAUGE
+        ACCESS  read-only
+        STATUS  mandatory
+        DESCRIPTION
+        	 "The number of 1 KB blocks that are assigned"
+	::= {fs 5}
+
 zfsFilesystemAvailableMB OBJECT-TYPE
 	SYNTAX	GAUGE
 	ACCESS	read-only
@@ -65,6 +135,15 @@ zfsFilesystemUsedMB OBJECT-TYPE
 	         "The number of 1 MB blocks that are in use Useful if
 		 zfsFilesystemUsedKB exceeds a 32 bit integer."
 	::= {fs 13}
+
+zfsFilesystemSizeMB OBJECT-TYPE
+        SYNTAX  GAUGE
+        ACCESS  read-only
+        STATUS  mandatory
+        DESCRIPTION
+                 "The number of 1 MB blocks that are assigned  Useful if
+                 zfsFilesystemSizeKB exceeds a 32 bit integer."
+        ::= {fs 14}
 
 arc	OBJECT IDENTIFIER ::= {zfs 2}
 
@@ -301,4 +380,3 @@ iostatTotalErrors OBJECT-TYPE
         ::= {errors 2}
 
 END
-
